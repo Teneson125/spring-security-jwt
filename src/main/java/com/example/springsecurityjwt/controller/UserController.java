@@ -11,8 +11,17 @@ public class UserController {
     @Autowired
     UserService userService;
 
+
     @GetMapping("/")
     private String homePage(){
         return "hi";
+    }
+    @GetMapping("/login")
+    private String login(){
+        return "login";
+    }
+    @GetMapping("/register")
+    private String register(){
+        return "register";
     }
 }
