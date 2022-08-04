@@ -1,8 +1,11 @@
 package com.example.springsecurityjwt.util;
 
+import com.example.springsecurityjwt.entity.User;
+import com.example.springsecurityjwt.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +16,8 @@ import java.util.function.Function;
 
 @Service
 public class JwtUtil {
-
+    @Autowired
+    UserRepository userRepository;
     private String secret = "manoj";
 
     public String extractUsername(String token) {
@@ -37,7 +41,11 @@ public class JwtUtil {
     }
 
     public String generateToken(String username) {
+        User user = userRepository.findByUserName(username);
+
         Map<String, Object> claims = new HashMap<>();
+        claims.put("name", user.getUserName());
+        claims.put("role", user.getRole());
         return createToken(claims, username);
     }
 

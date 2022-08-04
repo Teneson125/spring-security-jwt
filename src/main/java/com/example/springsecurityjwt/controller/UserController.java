@@ -23,13 +23,15 @@ public class UserController {
     private String homePage(){
         return "hi";
     }
+
     @GetMapping("/login")
     private String login(){
         return "login";
     }
+
     @GetMapping("/register")
     private String register(){
-        return "register";
+        return "user register";
     }
 
     @PostMapping("/authenticate")
