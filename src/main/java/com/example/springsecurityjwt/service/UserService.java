@@ -19,9 +19,9 @@ public class UserService {
     @PostConstruct
     public void initUsers() {
         List<User> users = Stream.of(
-                new User("manoj","passowrd","ADMIN"),
-                new User("manoj2","passowrd","SUPPORT"),
-                new User("manoj3","passowrd","USER")
+                new User("manoj","password1"),
+                new User("manoj2","password2"),
+                new User("manoj3","password3")
         ).collect(Collectors.toList());
         repository.saveAll(users);
     }
